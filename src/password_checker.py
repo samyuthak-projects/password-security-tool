@@ -1,5 +1,7 @@
 import re
 import bcrypt
+import string
+
 
 def hash_password(password):
 
@@ -87,7 +89,26 @@ def format_time(seconds):
     else:
         return f"~{round(years / 1_000_000_000, 2)} billion years"
     
-    
+
+def brute_force_demo(target):
+
+    chars = string.ascii_lowercase
+    attempts = 0
+
+    for c1 in chars:
+        for c2 in chars:
+
+            guess = c1 + c2
+            attempts += 1
+
+            print("Trying:", guess)
+
+            if guess == target:
+                print("\nPassword found:", guess)
+                print("Attempts:", attempts)
+                return
+            
+                
 while True:
     pw = input("Enter a password (or 'quit'): ")
 
@@ -111,3 +132,9 @@ while True:
         print("Password match ✅")
     else:
         print("Incorrect password ❌")
+
+demo = input("Run brute force demo? (yes/no): ")
+print("⚠️ Demo only works for very short passwords (2 letters).")
+if demo == "yes":
+    target = input("Enter a SHORT password (2 lowercase letters only): ")
+    brute_force_demo(target)
