@@ -1,4 +1,22 @@
 import re
+import bcrypt
+
+def hash_password(password):
+
+    password_bytes = password.encode("utf-8")
+
+    salt = bcrypt.gensalt()
+
+    hashed = bcrypt.hashpw(password_bytes, salt)
+
+    return hashed
+
+def verify_password(password, hashed):
+
+    password_bytes = password.encode("utf-8")
+
+    return bcrypt.checkpw(password_bytes, hashed)
+
 
 def check_password(password):
 
@@ -80,5 +98,16 @@ while True:
     crack_time = estimate_crack_time(pw)
     readable_time = format_time(crack_time)
 
+    hashed_pw = hash_password(pw)
+
     print("Strength:", result)
     print("Estimated crack time:", readable_time)
+    print("Hashed password:", hashed_pw)
+
+    # simulate login
+    test = input("Re-enter password to verify: ")
+
+    if verify_password(test, hashed_pw):
+        print("Password match ✅")
+    else:
+        print("Incorrect password ❌")
