@@ -44,15 +44,30 @@ def estimate_crack_time(password):
 def format_time(seconds):
 
     if seconds < 60:
-        return "seconds"
-    elif seconds < 3600:
-        return "minutes"
-    elif seconds < 86400:
-        return "hours"
-    elif seconds < 31536000:
-        return "days"
+        return f"~{round(seconds, 2)} seconds"
+
+    minutes = seconds / 60
+    if minutes < 60:
+        return f"~{round(minutes, 2)} minutes"
+
+    hours = minutes / 60
+    if hours < 24:
+        return f"~{round(hours, 2)} hours"
+
+    days = hours / 24
+    if days < 365:
+        return f"~{round(days, 2)} days"
+
+    years = days / 365
+
+    if years < 1_000:
+        return f"~{round(years, 2)} years"
+    elif years < 1_000_000:
+        return f"~{round(years / 1_000, 2)} thousand years"
+    elif years < 1_000_000_000:
+        return f"~{round(years / 1_000_000, 2)} million years"
     else:
-        return "months/years"
+        return f"~{round(years / 1_000_000_000, 2)} billion years"
     
     
 while True:
