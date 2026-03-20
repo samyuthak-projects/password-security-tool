@@ -46,20 +46,8 @@ The demo is limited to very short passwords to illustrate how attackers attempt 
     python src/password_checker.py
 
 
-## Example Output
-
-Enter a password: H3llo@Secure!
-
-Strength: Strong 💪
-Estimated crack time: ~2.1 million years
-Hashed password: b'$2b$12$...'
-
-Re-enter password to verify: H3llo@Secure!
-Password match ✅
-
-
 ## Project Purpose
 
-This project was built to explore fundamental cybersecurity concepts and demonstrate how password security works in real systems.
+I built this project to explore fundamental cybersecurity concepts and demonstrate how password security works in real systems.
 
 It highlights both defensive techniques (hashing and secure storage) and attacker methods (brute-force simulation), providing a balanced understanding of password security.
